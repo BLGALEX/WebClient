@@ -1,5 +1,4 @@
 import os
-import sys
 from Client.Client import ClientClass
 
 URL = 'http://159.65.207.158:5000'
@@ -19,7 +18,18 @@ def main():
         print('Ops, user already exist, trying to login...')
         register_code = client.login()
     if register_code == 201 or register_code == 200:
-        print('Success!')
+        print('Success!\n')
+    print('addtask [task_title] - add new task')
+    print('renametask [task_id] [task_new_title] - changes task title')
+    print('completetask [task_id] - sets task as completed')
+    print('removetask [task_id] – remove task by id')
+    print('todo - shows all tasks')
+    print('uploadfile [filepath] - uploads selected to server')
+    print('downloadfile [filename] [file_name_to_save] - downloads file with chosen name to data dir')
+    print('removefile [filename] - removes file from server')
+    print('files - get all files list')
+    print('exit - finishing the program')
+    print('help - repeats this hint above')
     while True:
         print('~#', end=' ')
         command = input().strip().split()
@@ -72,6 +82,18 @@ def main():
             elif command[0] == 'files':
                 assert(len(command) == 1)
                 print(client.get_files())
+
+            elif command[0] == 'help':
+                print('addtask [task_title] - add new task')
+                print('renametask [task_id] [task_new_title] - changes task title')
+                print('completetask [task_id] - sets task as completed')
+                print('removetask [task_id] – remove task by id')
+                print('todo - shows all tasks')
+                print('uploadfile [filepath] - uploads selected to server')
+                print('downloadfile [filename] [file_name_to_save] - downloads file with chosen name to data dir')
+                print('removefile [filename] - removes file from server')
+                print('files - get all files list')
+                print('exit - finishing the program')
 
             else:
                 raise Exception()
